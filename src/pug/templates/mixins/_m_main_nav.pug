@@ -1,0 +1,6 @@
+mixin main_nav(list)
+	nav.main_nav
+		ul.main_nav_list
+			each link in list
+				li.main_nav_item
+					a.main_nav_link(href=link.href)= link.text
