@@ -1,0 +1,6 @@
+mixin tags(list, mod)
+	- mod = mod || "";
+	ul.tags(class=mod)
+		each tag in list
+			li.tags_item
+				a.tags_link(href=tag.href)= tag.text
