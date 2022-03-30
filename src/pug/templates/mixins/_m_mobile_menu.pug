@@ -1,0 +1,10 @@
+mixin mobile_menu(data)
+	.mobile_menu
+		.mobile_menu_in
+			.mobile_menu_cross
+				+icon_button("cross", "icon_button--cross")
+			.mobile_menu_tags
+				.mobile_menu_tags_title Tags
+				+tags(data.tags, "tags--vertical")
+			.mobile_menu_nav
+				+main_nav(data.nav)

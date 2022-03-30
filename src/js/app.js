@@ -2,6 +2,7 @@
 import $ from 'jquery';
 import { GLOBAL_VARS } from 'utils/constants';
 import { documentReady, pageLoad } from 'utils';
+import MobileMenu from 'components/MobileMenu';
 import pageWidgetInit from './dev_vendors/dev_widget';
 // ------------------- imports###
 
@@ -27,6 +28,12 @@ if (GLOBAL_VARS.projectDevStatus) {
 
 const readyFunc = () => {
 	console.log('ready');
+
+	const mobileMenu = new MobileMenu({
+		menu: '.mobile_menu',
+		cross: '.mobile_menu .icon_button--cross',
+		openMod: 'mobile_menu--open',
+	});
 };
 
 const loadFunc = () => {
