@@ -3,6 +3,7 @@ import $ from 'jquery';
 import { GLOBAL_VARS } from 'utils/constants';
 import { documentReady, pageLoad } from 'utils';
 import MobileMenu from 'components/MobileMenu';
+import Burger from 'components/Burger';
 import pageWidgetInit from './dev_vendors/dev_widget';
 // ------------------- imports###
 
@@ -33,6 +34,15 @@ const readyFunc = () => {
 		menu: '.mobile_menu',
 		cross: '.mobile_menu .icon_button--cross',
 		openMod: 'mobile_menu--open',
+	});
+
+	const burger = new Burger({
+		burger: '.burger',
+		top: '.burger .burger_line--top',
+		center: '.burger .burger_line--center',
+		bottom: '.burger .burger_line--bottom',
+		height: 3.2,
+		offset: 6.4,
 	});
 };
 

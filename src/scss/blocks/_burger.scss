@@ -1,0 +1,56 @@
+@use "sass:math";
+
+.burger {
+	position: relative;
+
+	width: 3rem;
+	height: 3rem;
+
+	cursor: pointer;
+}
+
+.burger_line {
+	$width: 2.6rem;
+	$height: .2rem;
+	$offset: .4rem;
+
+	position: absolute;
+	top: 50%;
+	left: 50%;
+
+	margin-left: math.div(-$width, 2);
+	width: $width;
+	height: $height;
+
+	background: $color_text_base;
+
+	&.burger_line--top {
+		margin-top: -($height * 1.5 + $offset);
+
+		will-change: transform;
+	}
+
+	&.burger_line--center {
+		margin-top: math.div(-$height, 2);
+
+		will-change: opacity;
+	}
+
+	&.burger_line--bottom {
+		margin-top: $height * .5 + $offset;
+
+		will-change: transform;
+	}
+}
+
+@keyframes burger_top {
+	0% { transform: translateY(0) rotate(0); }
+	50% { transform: translateY(.2rem + .4rem) rotate(0); }
+	100% { transform: translateY(.2rem + .4rem) rotate(45deg); }
+}
+
+@keyframes burger_bottom {
+	0% { transform: translateY(0) rotate(0); }
+	50% { transform: translateY(-(.2rem + .4rem)) rotate(0); }
+	100% { transform: translateY(-(.2rem + .4rem)) rotate(-45deg); }
+}
