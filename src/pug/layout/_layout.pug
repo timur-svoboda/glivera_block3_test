@@ -44,6 +44,7 @@ include ../templates/_project_mixins
 			text: "contact"
 		}
 	];
+	const header_data = {tags, nav};
 	const mobile_menu_data = {tags, nav};
 
 block vars
@@ -52,7 +53,7 @@ html(lang="en")
 	head
 		+head(array)
 	body(class= array.body_class)
-		+header
+		+header(header_data)
 		.wrapper(class= array.layout_mod)
 			.base(class= array.layout_mod)
 				block content_block

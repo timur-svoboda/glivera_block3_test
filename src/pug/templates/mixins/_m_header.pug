@@ -1,2 +1,11 @@
-mixin header
+mixin header(data)
 	header.header
+		.header_in
+			.header_tags
+				.header_tags_title Tags:
+				+tags(data.tags)
+			.header_burger
+				+burger
+			.header_nav
+				+main_nav(data.nav)
+		.header_bg
