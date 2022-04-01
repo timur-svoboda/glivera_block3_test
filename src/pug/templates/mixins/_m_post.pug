@@ -1,0 +1,22 @@
+mixin post(data)
+	.post
+		.post_in
+			.post_img
+				a(href="#")
+					img(src=data.img, alt="")
+			.post_content
+				h3.post_title
+					a(href="#")= data.title
+				.post_author
+					a(href="#").post_author_name= data.author.name
+					span.post_author_date | #{data.author.date}
+				.post_tags
+					each tag, index in data.tags
+						if index !== data.tags.length - 1
+							a(href="#")= `${tag}, `
+						else
+							a(href="#")= tag
+				.post_comments
+					.post_comments_count= data.comments_count
+					.post_comments_icon
+						+icon('comment')
