@@ -1,0 +1,65 @@
+.link_block {
+	padding: 0 0 2.2rem .6rem;
+
+	border-bottom: 1px solid #EBECED;
+}
+
+.link_block_header {
+	display: flex;
+
+	margin-bottom: 1.8rem;
+}
+
+.link_block_icon {
+	margin-right: 1.8rem;
+
+	svg {
+		width: 2.4rem;
+		height: 2.4rem;
+	}
+}
+
+.link_block_title {
+	margin-top: 2px;
+
+	font-size: 1.6rem;
+	font-weight: 300;
+	line-height: 2.2rem;
+	color: $color_text_darker;
+}
+
+.link_block_item {
+	position: relative;
+
+	&:not(:last-child) {
+		margin-bottom: .2rem;
+	}
+
+	&::before {
+		position: absolute;
+		top: .8rem;
+		left: -.6rem;
+
+		display: block;
+		width: .2rem;
+		height: .2rem;
+
+		background: $color_primary;
+		border-radius: 50%;
+
+		content: '';
+	}
+}
+
+.link_block_link {
+	@extend %transition_color;
+
+	display: block;
+
+	line-height: 2rem;
+	color: $color_text_base;
+
+	&:hover {
+		color: $color_link_base;
+	}
+}
