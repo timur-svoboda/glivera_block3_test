@@ -1,0 +1,4 @@
+mixin icon_button(name, mod)
+	- mod = mod || "";
+	button.icon_button(class=mod type="button")
+		+icon(name)

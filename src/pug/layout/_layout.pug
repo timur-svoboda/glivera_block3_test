@@ -3,15 +3,60 @@ include ../templates/_global_mixins
 include ../templates/_project_vars
 include ../templates/_project_mixins
 
+-
+	const tags = [
+		{
+			href: "#",
+			text: "bitcoin"
+		},
+		{
+			href: "#",
+			text: "bittorrent"
+		},
+		{
+			href: "#",
+			text: "irc"
+		},
+		{
+			href: "#",
+			text: "news"
+		},
+		{
+			href: "#",
+			text: "privacy"
+		},
+		{
+			href: "#",
+			text: "programming"
+		},
+		{
+			href: "#",
+			text: "security"
+		}
+	];
+	const nav = [
+		{
+			href: "#",
+			text: "team"
+		},
+		{
+			href: "#",
+			text: "contact"
+		}
+	];
+	const header_data = {tags, nav};
+	const mobile_menu_data = {tags, nav};
+
 block vars
 doctype
 html(lang="en")
 	head
 		+head(array)
 	body(class= array.body_class)
-		+header
+		+header(header_data)
 		.wrapper(class= array.layout_mod)
 			.base(class= array.layout_mod)
 				block content_block
 			+footer
+		+mobile_menu(mobile_menu_data)
 		block local_popup

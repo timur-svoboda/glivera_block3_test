@@ -2,9 +2,13 @@
 :root {
 	--full-screen: calc(var(--vh, 1vh) * 100);
 
-	--height-header: 10rem;
+	--height-header: 9.6rem;
 	--height-footer: 10rem;
 	--gl-indent: 3rem;
+
+	@include bp($point_5 - 1) {
+		--height-header: 7.8rem;
+	}
 }
 
 html {

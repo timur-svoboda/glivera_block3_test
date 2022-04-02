@@ -1,0 +1,22 @@
+@use "sass:math";
+
+.main_nav_list {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.main_nav_item {
+	&:not(:last-child) {
+		margin-right: 2.4rem;
+	}
+}
+
+.main_nav_link {
+	display: block;
+
+	font-weight: 500;
+	line-height: 3rem;
+	color: $color_text_base;
+	text-transform: uppercase;
+	letter-spacing: math.div(72em, 1000);
+}
