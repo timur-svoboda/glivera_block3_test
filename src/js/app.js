@@ -6,6 +6,7 @@ import MobileMenu from 'components/MobileMenu';
 import Burger from 'components/Burger';
 import Header from 'components/Header';
 import Post from 'components/Post';
+import PostList from 'components/PostList';
 import pageWidgetInit from './dev_vendors/dev_widget';
 // ------------------- imports###
 
@@ -58,6 +59,10 @@ const readyFunc = () => {
 	burger.el.on('click', () => mobileMenu.open());
 
 	mobileMenu.el.on('closed', () => burger.uncross());
+
+	$('.post_list').each((i, el) => {
+		PostList({ el });
+	});
 
 	$('.post').each((i, el) => {
 		Post({
