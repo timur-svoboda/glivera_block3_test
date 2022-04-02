@@ -50,11 +50,41 @@ body {
 }
 
 .base {
+	flex: 1 0 auto;
+	display: flex;
+	flex-direction: column;
+
 	width: 100%;
 	position: relative;
-	padding: var(--height-header) 0 0;
+	padding: var(--height-header) 1rem 0;
+}
 
-	flex: 1 0 auto;
+.base_in {
+	@extend %container;
+
+	flex-grow: 1;
+	display: flex;
+	align-items: stretch;
+}
+
+.base_main {
+	flex-grow: 1;
+
+	@include bp($point_2, min) {
+		padding-right: 1.2rem;
+	}
+}
+
+.base_sidebar {
+	flex: 0 0 25rem;
+
+	padding-left: 3.6rem;
+
+	border-left: 1px solid #EBECED;
+
+	@include bp($point_2 - 1) {
+		display: none;
+	}
 }
 
 a {

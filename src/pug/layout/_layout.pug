@@ -56,7 +56,11 @@ html(lang="en")
 		+header(header_data)
 		.wrapper(class= array.layout_mod)
 			.base(class= array.layout_mod)
-				block content_block
+				.base_in
+					main.base_main
+						block main
+					aside.base_sidebar
+						block sidebar
 			+footer
 		+mobile_menu(mobile_menu_data)
 		block local_popup
