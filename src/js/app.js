@@ -5,6 +5,9 @@ import { documentReady, pageLoad } from 'utils';
 import MobileMenu from 'components/MobileMenu';
 import Burger from 'components/Burger';
 import Header from 'components/Header';
+import Post from 'components/Post';
+import PostList from 'components/PostList';
+import RecentPosts from 'components/RecentPosts';
 import pageWidgetInit from './dev_vendors/dev_widget';
 // ------------------- imports###
 
@@ -57,6 +60,21 @@ const readyFunc = () => {
 	burger.el.on('click', () => mobileMenu.open());
 
 	mobileMenu.el.on('closed', () => burger.uncross());
+
+	$('.recent_posts').each((i, el) => {
+		RecentPosts({ el });
+	});
+
+	$('.post_list').each((i, el) => {
+		PostList({ el });
+	});
+
+	$('.post').each((i, el) => {
+		Post({
+			el,
+			titleSelector: '.post_title',
+		});
+	});
 };
 
 const loadFunc = () => {

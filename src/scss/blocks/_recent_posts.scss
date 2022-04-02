@@ -1,0 +1,27 @@
+.recent_posts {
+	display: flex;
+	flex-direction: column;
+
+	&.recent_posts--below_point_1 {
+		.recent_posts_title {
+			margin-bottom: 1.2rem;
+		}
+	}
+}
+
+.recent_posts_title {
+	margin-bottom: 2.4rem;
+
+	font-size: 2rem;
+	font-weight: 300;
+	color: $color_text_darker;
+	line-height: 2.8rem;
+}
+
+.recent_posts_list {
+	margin-bottom: 2.6rem;
+}
+
+.recent_posts_button {
+	align-self: center;
+}

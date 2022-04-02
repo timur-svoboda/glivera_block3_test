@@ -1,0 +1,8 @@
+mixin recent_posts(data, mod)
+	- mod = mod || '';
+	.recent_posts
+		h2.recent_posts_title= data.title
+		.recent_posts_list
+			+post_list(data.post_list_data)
+		.recent_posts_button
+			+button(data.button_data)
