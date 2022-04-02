@@ -1,0 +1,23 @@
+.sidebar_search {
+	&:not(:last-child) {
+		margin-bottom: 2.6rem;
+	}
+}
+
+.sidebar_link_block {
+	&:not(:last-child) {
+		margin-bottom: 2rem;
+	}
+}
+
+.sidebar_poster {
+	&:not(:last-child) {
+		margin-bottom: 3.2rem;
+	}
+}
+
+.sidebar_tag_cloud {
+	&:not(:last-child) {
+		margin-bottom: 2rem;
+	}
+}

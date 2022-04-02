@@ -1,0 +1,43 @@
+.tag_cloud_title {
+	margin-bottom: 1rem;
+
+	font-size: 1.6rem;
+	font-weight: 300;
+	line-height: 2.2rem;
+	color: $color_text_darker;
+}
+
+.tag_cloud_list {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: baseline;
+}
+
+.tag_cloud_item {
+	&:not(:last-child) {
+		margin-right: .4rem;
+	}
+}
+
+.tag_cloud_link {
+	@extend %transition_color;
+	@extend %transition_opacity;
+
+	display: block;
+
+	line-height: 2rem;
+	color: $color_text_base;
+
+	@for $i from 1 through 6 {
+		&[data-weight="#{$i}"] {
+			font-size: .8rem + $i * .1rem;
+			opacity: 1 - (6 - $i) / 12;
+			font-weight: if($i > 3, 500, 400);
+		}
+	}
+
+	&:hover {
+		color: $color_primary;
+		opacity: 1;
+	}
+}

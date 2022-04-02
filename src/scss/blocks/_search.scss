@@ -1,0 +1,30 @@
+.search {
+	display: flex;
+	align-items: stretch;
+
+	min-width: 21.2rem;
+	height: 3.6rem;
+
+	border: 1px solid #D7D8D9;
+	border-radius: .2rem;
+}
+
+.search_button {
+	display: flex;
+
+	width: 3.6rem;
+}
+
+.search_input {
+	flex-grow: 1;
+
+	padding-right: 20px;
+
+	font-family: inherit;
+	font-size: 1.2rem;
+	font-weight: 300;
+	line-height: 1.6rem;
+	color: $color_text_darker;
+
+	border: none;
+}
