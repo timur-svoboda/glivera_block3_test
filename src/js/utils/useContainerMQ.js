@@ -27,8 +27,8 @@ export default function useContainerMQ(el, baseClass, breakpoints) {
 	}
 
 	// Initialize
-	updateClasses();
+	setTimeout(updateClasses);
 
 	// Update on resize
-	$(window).resize('resize', updateClasses);
+	$(window).resize('resize', () => setTimeout(updateClasses));
 }
