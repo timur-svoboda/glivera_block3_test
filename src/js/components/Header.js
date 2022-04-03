@@ -60,9 +60,9 @@ export default class Header {
 
 	resizeBg() {
 		if (this.isFixed()) {
-			gsap.to(this.bg.get(0), { scale: this.maxScaleX, duration: 0.3 });
+			gsap.to(this.bg.get(0), { scaleX: this.maxScaleX, duration: 0.3 });
 		} else {
-			gsap.to(this.bg.get(0), { scale: 1, duration: 0.3 });
+			gsap.to(this.bg.get(0), { scaleX: 1, duration: 0.3 });
 		}
 	}
 }
