@@ -2,4 +2,4 @@ mixin poster(data, mod)
 	- mod = mod || '';
 	.poster(class=mod)
 		a(href="#")
-			img(src=data.img, alt="")
+			+picture({ img: data.img })

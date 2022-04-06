@@ -3,7 +3,7 @@ mixin post(data)
 		.post_in
 			.post_img
 				a(href="#")
-					img(src=data.img, alt="")
+					+picture({ img: data.img })
 			.post_content
 				a.post_title(href="#")= data.title
 				.post_author
