@@ -45,6 +45,8 @@
 	.sidebar_link_block
 		+link_block(sidebar_data.popular_posts)
 	.sidebar_poster
-		+poster(sidebar_data.poster)
+		.poster
+			a.poster_link(href="#")
+				+picture({ img: sidebar_data.poster.img })
 	.sidebar_tag_cloud
 		+tag_cloud(sidebar_data.tag_cloud)
