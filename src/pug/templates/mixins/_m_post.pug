@@ -7,7 +7,7 @@ mixin post(data)
 			.post_content
 				a.post_title(href="#")= data.title
 				.post_author
-					a(href="#").post_author_name= data.author.name
+					a.post_author_name(href="#")= data.author.name
 					span.post_author_date | #{data.author.date}
 				.post_tags
 					each tag, index in data.tags
