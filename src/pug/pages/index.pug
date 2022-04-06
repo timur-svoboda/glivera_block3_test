@@ -44,52 +44,7 @@ block vars
 			post_list_data,
 			button_data,
 		};
-
-		const search_data = {
-			placeholder: 'Search blog',
-		};
-
-		const announcements_data = {
-			icon: 'ring',
-			title: 'Announcements',
-			list: [
-				{ text: 'Upcoming Changes (Live Chat, Less Censorship, More Access)' },
-				{ text: 'New Servers (US Washington DC)' },
-				{ text: 'New Servers (US Denver)' },
-				{ text: 'Open Source: Releasing the PIA iOS Client' },
-				{ text: 'Opera Extension is now available' },
-			],
-		};
-
-		const popular_posts_data = {
-			icon: 'rss',
-			title: 'Popular posts',
-			list: [
-				{ text: 'The Gift of Privacy' },
-				{ text: 'UK High Court Censors Many Links To Popcorn Time: Useless, Dangerous Gesture' },
-				{ text: 'About the PIA Client Security and VPN Security in General' },
-				{ text: 'A Private Net Is Just As Fundamental A Right As Freedom Of Speech' },
-				{ text: 'Wiretapping Today Just Doesn’t Mean What The Word Meant In The 1990s, So Don’t Fall For That Lie' },
-			],
-		};
-
-		const poster_data = {
-			img: 'poster',
-		};
-
-		const tag_cloud_data = {
-			title: 'Tag cloud',
-			list: ['mass', 'surveillance', 'internet', 'privacy', 'china', 'whatsapp', 'police', 'dna', 'nsa', 'russia', 'gchq', 'internet', 'censorship', 'facial', 'recognition', 'isp', 'Apple', 'united kingdom', 'amazon', 'metadata', 'turkey', 'vpn', 'tracking', 'broadband', 'privacy', 'canada', 'encryption', 'Twitter', 'uk', 'surverillance', 'EU', 'Facebook', 'india', 'freedom', 'of', 'expression', 'ajit', 'pai', 'bitcoin', 'internet', 'history', 'gdpr', 'microsoft', 'fcc', 'censorship', 'germany', 'file', 'sharing', 'privacy', 'copyright', 'anonymity', 'internet', 'of', 'things', 'google', 'australia', 'net', 'neutrality'],
-		};
-
-		const sidebar_data = {
-			search_data,
-			announcements_data,
-			popular_posts_data,
-			poster_data,
-			tag_cloud_data,
-		};
 block main
 	+recent_posts(recent_posts_data)
 block sidebar
-	+sidebar(sidebar_data)
+	include ../blocks/sidebar
