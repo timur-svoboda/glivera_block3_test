@@ -2,49 +2,7 @@ extends ../layout/_layout
 
 block vars
 	- array = {body_class:'', layout_mod:'', sub_keywords:'', title_inner:'Index'}
-	-
-		let post_list_data = [
-			{
-				img: 'post_1',
-				title: 'The Internet Cannot be Trusted – Beamsplitters, Backdoors, and Broken Promises',
-				author: {
-					name: 'Derek Zimmer',
-					date: 'JUL 25, 2018',
-				},
-				tags: ['Governments', 'Networking', 'Open Source', 'Privacy', 'Security'],
-				comments_count: 0,
-			},
-			{
-				img: 'post_2',
-				title: 'How to get cheaper flights using a VPN',
-				author: {
-					name: 'Jayson',
-					date: 'JUL 24, 2018',
-				},
-				tags: ['Guides'],
-				comments_count: 0,
-			},
-			{
-				img: 'post_3',
-				title: 'Net Neutrality was repealed, but the fight is far from over',
-				author: {
-					name: 'Chris Miller',
-					date: 'JUL 22, 2018',
-				},
-				tags: ['Governments', 'Net Neutrality', 'News'],
-				comments_count: 0,
-			},
-		];
-		post_list_data = post_list_data.concat(post_list_data);
-
-		const button_data = { text: 'older posts' };
-
-		const recent_posts_data = {
-			title: 'Recent posts',
-			post_list_data,
-			button_data,
-		};
 block main
-	+recent_posts(recent_posts_data)
+	include ../blocks/recent_posts
 block sidebar
 	include ../blocks/sidebar
