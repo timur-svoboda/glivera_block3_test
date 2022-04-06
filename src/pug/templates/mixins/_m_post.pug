@@ -5,8 +5,7 @@ mixin post(data)
 				a(href="#")
 					img(src=data.img, alt="")
 			.post_content
-				h3.post_title
-					a(href="#")= data.title
+				a.post_title(href="#")= data.title
 				.post_author
 					a(href="#").post_author_name= data.author.name
 					span.post_author_date | #{data.author.date}
