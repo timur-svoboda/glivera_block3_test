@@ -3,11 +3,10 @@
 .post_list {
 	display: flex;
 	flex-wrap: wrap;
-	justify-content: space-between;
 	align-items: stretch;
 	align-content: stretch;
 
-	margin-top: -1.8rem;
+	margin: -1.8rem -1.8rem -1.8rem 0;
 
 	&.post_list--above_point_1 {
 		.post_list_item {
@@ -17,7 +16,7 @@
 
 	&.post_list--below_point_1 {
 		.post_list_item {
-			width: calc(50% - (1.8rem / 2));
+			width: 50%;
 		}
 	}
 
@@ -29,7 +28,7 @@
 }
 
 .post_list_item {
-	padding: 1.8rem 0;
+	padding: 1.8rem 1.8rem 1.8rem 0;
 
 	border-bottom: 1px solid #EBECED;
 }
