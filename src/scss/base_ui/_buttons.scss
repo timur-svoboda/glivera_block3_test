@@ -1,4 +1,4 @@
-// .btn_base {
-// 	@extend %blue_btn_1;
-// 	@extend %btn_size_1;
-// }
+.btn_base {
+	@extend %btn_theme_green;
+	@extend %btn_size_default;
+}

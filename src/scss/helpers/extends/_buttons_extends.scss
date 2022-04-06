@@ -1,3 +1,6 @@
+@use "sass:math";
+@use "sass:color";
+
 @mixin st_btn() {
 	display: inline-flex;
 	justify-content: center;
@@ -11,31 +14,41 @@
 	&:hover, &:focus {
 		text-decoration: none;
 	}
-
 }
 
-//color extends
-%blue_btn_1 {
-	font-weight: 700;
-	color: $white;
-	background-color: $color_link_base;
-	transition: background-color .3s ease;
+%btn_theme_green {
+	font-family: inherit;
+	font-weight: 500;
+	color: $color_primary;
+	text-transform: uppercase;
+	letter-spacing: math.div(58em, 1000);
+
+	background: transparent;
+	border: 1px solid $color_primary;
+
+	transition: background .3s ease, border-color .3s ease;
+	will-change: background, border-color;
 
 	@include st_btn();
 
 	&:hover {
-		background-color: darken($color_link_base, 10%);
+		color: $white;
+
+		background: $color_primary;
 	}
 
+	&:focus {
+		color: $white;
+
+		background: color.adjust($color_primary, $lightness: -10%);
+		border-color: color.adjust($color_primary, $lightness: -10%);
+	}
 }
 
-//size extends
-%btn_size_1 {
-	height: 4rem;
-	padding: 0 1.2rem;
+%btn_size_default {
+	min-width: 16.2rem;
 
-	line-height: 4rem;
-	font-size: 1.6rem;
+	line-height: 2.6rem;
 
-	border-radius: $gl_radius;
+	border-radius: 1.8rem;
 }
