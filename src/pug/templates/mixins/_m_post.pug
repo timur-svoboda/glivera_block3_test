@@ -9,12 +9,13 @@ mixin post(data)
 				.post_author
 					a.post_author_name(href="#")= data.author.name
 					span.post_author_date | #{data.author.date}
-				.post_tags
+				ul.post_tags
 					each tag, index in data.tags
-						if index !== data.tags.length - 1
-							a.post_tags_link(href="#")= `${tag}, `
-						else
-							a.post_tags_link(href="#")= tag
+						li.post_tags_item
+							if index !== data.tags.length - 1
+								a.post_tags_link(href="#")= `${tag}, `
+							else
+								a.post_tags_link(href="#")= tag
 				.post_comments
 					.post_comments_count= data.comments_count
 					.post_comments_icon
