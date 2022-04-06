@@ -36,7 +36,10 @@
 
 .sidebar
 	.sidebar_search
-		+search(sidebar_data.search)
+		.search
+			.search_button
+				+icon_button("search")
+			input.search_input(type="search", placeholder=sidebar_data.search.placeholder)
 	.sidebar_link_block
 		+link_block(sidebar_data.announcements)
 	.sidebar_link_block
