@@ -5,4 +5,4 @@ mixin tag_cloud(data, mod)
 		ul.tag_cloud_list
 			each tag in data.list
 				li.tag_cloud_item
-					a.tag_cloud_link(href="#", data-weight=tag.weight)= tag.text
+					a.tag_cloud_link(href="#")= tag
