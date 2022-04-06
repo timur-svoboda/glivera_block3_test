@@ -1,10 +1,52 @@
 mixin mobile_menu(data)
+	-
+		const tags = [
+			{
+				href: "#",
+				text: "bitcoin"
+			},
+			{
+				href: "#",
+				text: "bittorrent"
+			},
+			{
+				href: "#",
+				text: "irc"
+			},
+			{
+				href: "#",
+				text: "news"
+			},
+			{
+				href: "#",
+				text: "privacy"
+			},
+			{
+				href: "#",
+				text: "programming"
+			},
+			{
+				href: "#",
+				text: "security"
+			}
+		];
+		const nav = [
+			{
+				href: "#",
+				text: "team"
+			},
+			{
+				href: "#",
+				text: "contact"
+			}
+		];
+
 	.mobile_menu
 		.mobile_menu_in
 			.mobile_menu_cross
 				+icon_button("cross", "icon_button--cross")
 			.mobile_menu_tags
 				.mobile_menu_tags_title Tags
-				+tags(data.tags, "tags--vertical")
+				+tags(tags, "tags--vertical")
 			.mobile_menu_nav
-				+main_nav(data.nav)
+				+main_nav(nav)

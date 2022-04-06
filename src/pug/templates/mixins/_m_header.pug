@@ -1,11 +1,53 @@
 mixin header(data)
+	-
+		const tags = [
+			{
+				href: "#",
+				text: "bitcoin"
+			},
+			{
+				href: "#",
+				text: "bittorrent"
+			},
+			{
+				href: "#",
+				text: "irc"
+			},
+			{
+				href: "#",
+				text: "news"
+			},
+			{
+				href: "#",
+				text: "privacy"
+			},
+			{
+				href: "#",
+				text: "programming"
+			},
+			{
+				href: "#",
+				text: "security"
+			}
+		];
+		const nav = [
+			{
+				href: "#",
+				text: "team"
+			},
+			{
+				href: "#",
+				text: "contact"
+			}
+		];
+
 	header.header
 		.header_in
 			.header_tags
 				.header_tags_title Tags:
-				+tags(data.tags)
+				+tags(tags)
 			.header_burger
 				+burger
 			.header_nav
-				+main_nav(data.nav)
+				+main_nav(nav)
 		.header_bg
