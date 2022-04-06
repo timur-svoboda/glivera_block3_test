@@ -1,5 +1,5 @@
 mixin poster(data, mod)
 	- mod = mod || '';
 	.poster(class=mod)
-		a(href="#")
+		a.poster_link(href="#")
 			+picture({ img: data.img })
