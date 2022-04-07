@@ -39,7 +39,6 @@ const readyFunc = () => {
 		inner: '.header .header_in',
 		bg: '.header_bg',
 		fixedMod: 'header--fixed',
-		borderRadius: 4,
 	});
 
 	const mobileMenu = new MobileMenu({

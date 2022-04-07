@@ -26,8 +26,9 @@ function makeSticky(data) {
 
 	// Update scale value of background when header is fixed
 	let maxScaleX;
+	const borderRadius = parseFloat(data.bg.css('border-radius'));
 	function updateMaxScaleX() {
-		maxScaleX = ($(document).width() + data.borderRadius) / data.bg.width();
+		maxScaleX = ($(document).width() + borderRadius) / data.bg.width();
 	}
 
 	// Resize header background
@@ -59,9 +60,8 @@ export default function Header(data) {
 	const inner = $(data.inner).first();
 	const bg = $(data.bg).first();
 	const fixedMod = data.fixedMod || 'header--fixed';
-	const borderRadius = data.borderRadius || 0;
 
 	makeSticky({
-		el, inner, bg, fixedMod, borderRadius,
+		el, inner, bg, fixedMod,
 	});
 }
