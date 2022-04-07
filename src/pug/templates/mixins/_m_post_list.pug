@@ -1,6 +1,0 @@
-mixin post_list(list, mod)
-	- mod = mod || '';
-	ul.post_list(class=mod)
-		each post in list
-			li.post_list_item
-				+post(post)

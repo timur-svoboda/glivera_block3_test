@@ -47,7 +47,10 @@ mixin header(data)
 				.header_tags_title Tags:
 				+tags(tags)
 			.header_burger
-				+burger
+				button.burger(type="button")
+					.burger_line.burger_line--top
+					.burger_line.burger_line--center
+					.burger_line.burger_line--bottom
 			.header_nav
 				+main_nav(nav)
 		.header_bg

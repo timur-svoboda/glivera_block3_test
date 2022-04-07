@@ -1,8 +1,0 @@
-mixin tag_cloud(data, mod)
-	- mod = mod || '';
-	.tag_cloud(class=mod)
-		h4.tag_cloud_title= data.title
-		ul.tag_cloud_list
-			each tag in data.list
-				li.tag_cloud_item
-					a.tag_cloud_link(href="#")= tag

@@ -1,0 +1,57 @@
+-
+	const sidebar_data = {
+		search: {
+			placeholder: 'Search blog',
+		},
+		announcements: {
+			icon: 'ring',
+			title: 'Announcements',
+			list: [
+				{ text: 'Upcoming Changes (Live Chat, Less Censorship, More Access)' },
+				{ text: 'New Servers (US Washington DC)' },
+				{ text: 'New Servers (US Denver)' },
+				{ text: 'Open Source: Releasing the PIA iOS Client' },
+				{ text: 'Opera Extension is now available' },
+			],
+		},
+		popular_posts: {
+			icon: 'rss',
+			title: 'Popular posts',
+			list: [
+				{ text: 'The Gift of Privacy' },
+				{ text: 'UK High Court Censors Many Links To Popcorn Time: Useless, Dangerous Gesture' },
+				{ text: 'About the PIA Client Security and VPN Security in General' },
+				{ text: 'A Private Net Is Just As Fundamental A Right As Freedom Of Speech' },
+				{ text: 'Wiretapping Today Just Doesn’t Mean What The Word Meant In The 1990s, So Don’t Fall For That Lie' },
+			],
+		},
+		poster: {
+			img: 'poster',
+		},
+		tag_cloud: {
+			title: 'Tag cloud',
+			list: ['mass', 'surveillance', 'internet', 'privacy', 'china', 'whatsapp', 'police', 'dna', 'nsa', 'russia', 'gchq', 'internet', 'censorship', 'facial', 'recognition', 'isp', 'Apple', 'united kingdom', 'amazon', 'metadata', 'turkey', 'vpn', 'tracking', 'broadband', 'privacy', 'canada', 'encryption', 'Twitter', 'uk', 'surverillance', 'EU', 'Facebook', 'india', 'freedom', 'of', 'expression', 'ajit', 'pai', 'bitcoin', 'internet', 'history', 'gdpr', 'microsoft', 'fcc', 'censorship', 'germany', 'file', 'sharing', 'privacy', 'copyright', 'anonymity', 'internet', 'of', 'things', 'google', 'australia', 'net', 'neutrality'],
+		},
+	};
+
+.sidebar
+	.sidebar_search
+		.search
+			.search_button
+				+icon_button("search")
+			input.search_input(type="search", placeholder=sidebar_data.search.placeholder)
+	.sidebar_link_block
+		+link_block(sidebar_data.announcements)
+	.sidebar_link_block
+		+link_block(sidebar_data.popular_posts)
+	.sidebar_poster
+		.poster
+			a.poster_link(href="#")
+				+picture({ img: sidebar_data.poster.img })
+	.sidebar_tag_cloud
+		.tag_cloud
+			h4.tag_cloud_title= sidebar_data.tag_cloud.title
+			ul.tag_cloud_list
+				each tag in sidebar_data.tag_cloud.list
+					li.tag_cloud_item
+						a.tag_cloud_link(href="#")= tag
