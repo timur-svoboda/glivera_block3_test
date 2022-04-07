@@ -1,68 +1,152 @@
 import gsap from 'gsap';
 import throttle from 'lodash.throttle';
 
-export default class Header {
-	constructor(data) {
-		this.document = $(document);
-		this.el = $(data.header).first();
-		this.inner = $(data.inner).first();
-		this.bg = $(data.bg).first();
-		this.fixedMod = data.fixedMod;
-		this.borderRadius = data.borderRadius;
-
-		// Bind methods
-		this.calcInnerOffsetTop = this.calcInnerOffsetTop.bind(this);
-		this.toggleFixed = this.toggleFixed.bind(this);
-		this.calcMaxScaleX = this.calcMaxScaleX.bind(this);
-		this.resizeBg = this.resizeBg.bind(this);
-		this.update = this.update.bind(this);
-
-		// Initialize
-		this.update();
-
-		// Scroll handlers
-		this.document.on('scroll', throttle(this.toggleFixed, 100));
-		this.document.on('scroll', throttle(this.resizeBg, 100));
-
-		// Resize handlers
-		$(window).on('resize', this.update);
+function makeSticky(data) {
+	// Check if header is fixed
+	function isFixed() {
+		return data.el.hasClass(data.fixedMod);
 	}
 
-	update() {
-		this.calcInnerOffsetTop();
-		this.toggleFixed();
-		this.calcMaxScaleX();
-		this.resizeBg();
+	// Update the distance from inner top to header top
+	let innerOffsetTop;
+	function updateInnerOffsetTop() {
+		innerOffsetTop = (data.el.height() - data.inner.height()) / 2;
 	}
 
-	calcInnerOffsetTop() {
-		this.innerOffsetTop = (this.el.height() - this.inner.height()) / 2;
-	}
+	// Update fixation state
+	function updateFixation() {
+		const isInnerTouchViewport = $(document).scrollTop() >= innerOffsetTop;
 
-	isFixed() {
-		return this.el.hasClass(this.fixedMod);
-	}
-
-	toggleFixed() {
-		const isFixed = this.isFixed();
-		const isInnerTouchViewport = this.document.scrollTop() >= this.innerOffsetTop;
-
-		if (!isFixed && isInnerTouchViewport) {
-			this.el.addClass(this.fixedMod);
-		} else if (isFixed && !isInnerTouchViewport) {
-			this.el.removeClass(this.fixedMod);
+		if (!isFixed() && isInnerTouchViewport) {
+			data.el.addClass(data.fixedMod);
+		} else if (isFixed() && !isInnerTouchViewport) {
+			data.el.removeClass(data.fixedMod);
 		}
 	}
 
-	calcMaxScaleX() {
-		this.maxScaleX = (this.document.width() + this.borderRadius) / this.bg.width();
+	// Update scale value of background when header is fixed
+	let maxScaleX;
+	const borderRadius = parseFloat(data.bg.css('border-radius'));
+	function updateMaxScaleX() {
+		maxScaleX = ($(document).width() + borderRadius) / data.bg.width();
 	}
 
-	resizeBg() {
-		if (this.isFixed()) {
-			gsap.to(this.bg.get(0), { scaleX: this.maxScaleX, duration: 0.3 });
+	// Resize header background
+	let duration = 0;
+	function resizeBackground() {
+		if (isFixed()) {
+			gsap.to(data.bg.get(0), { scaleX: maxScaleX, duration });
 		} else {
-			gsap.to(this.bg.get(0), { scaleX: 1, duration: 0.3 });
+			gsap.to(data.bg.get(0), { scaleX: 1, duration });
 		}
 	}
+
+	// Initialize state
+	setTimeout(updateInnerOffsetTop);
+	setTimeout(updateFixation);
+	setTimeout(updateMaxScaleX);
+	setTimeout(() => {
+		resizeBackground();
+		duration = 0.3;
+	});
+
+	// Add event listeners
+	$(window).on('resize', () => setTimeout(updateInnerOffsetTop));
+	$(window).on('resize', () => setTimeout(updateFixation));
+	$(window).on('resize', () => setTimeout(updateMaxScaleX));
+	$(window).on('resize', () => setTimeout(resizeBackground));
+	$(document).on('scroll', throttle(updateFixation, 100));
+	$(document).on('scroll', throttle(resizeBackground, 100));
+}
+
+function makeChildrenAdaptive(data) {
+	// Get children widths
+	let tagsWidth;
+	let navWidth;
+	let burgerWidth;
+	function getChildrenWidths() {
+		data.tags.show();
+		data.nav.show();
+		data.burger.show();
+
+		tagsWidth = data.tags.width();
+		navWidth = data.nav.width();
+		burgerWidth = data.burger.width();
+
+		data.tags.hide();
+		data.nav.hide();
+		data.burger.hide();
+	}
+
+	// Get state of children
+	let state;
+	function getChildrenState() {
+		const availableSpace = data.inner.width() - data.gap;
+
+		if (tagsWidth + navWidth <= availableSpace) {
+			state = {
+				tags: true,
+				nav: true,
+				burger: false,
+			};
+		} else if (burgerWidth + navWidth <= availableSpace) {
+			state = {
+				tags: false,
+				nav: true,
+				burger: true,
+			};
+		} else {
+			state = {
+				tags: false,
+				nav: false,
+				burger: true,
+			};
+		}
+	}
+
+	// Update header children visibility based on state
+	function updateChildrenVisibility() {
+		Object.entries(state).forEach(([child, isShown]) => data[child].toggle(isShown));
+	}
+
+	// Initialize
+	setTimeout(getChildrenWidths);
+	setTimeout(getChildrenState);
+	setTimeout(updateChildrenVisibility);
+
+	// Update children visibility on their resize
+	const childrenResizeObserver = new ResizeObserver(() => { // eslint-disable-line
+		setTimeout(getChildrenWidths);
+		setTimeout(getChildrenState);
+		setTimeout(updateChildrenVisibility);
+	});
+	childrenResizeObserver.observe(data.tags.get(0));
+	childrenResizeObserver.observe(data.nav.get(0));
+	childrenResizeObserver.observe(data.burger.get(0));
+
+	// Update children visibility on inner resize
+	const innerResizeObserver = new ResizeObserver(() => { // eslint-disable-line
+		setTimeout(getChildrenState);
+		setTimeout(updateChildrenVisibility);
+	});
+	innerResizeObserver.observe(data.inner.get(0));
+}
+
+export default function Header(data) {
+	const el = $(data.header).first();
+	const inner = $(data.inner).first();
+	const tags = $(data.tags).first();
+	const nav = $(data.nav).first();
+	const burger = $(data.burger).first();
+	const bg = $(data.bg).first();
+	const fixedMod = data.fixedMod || 'header--fixed';
+	const gap = data.gap || 16;
+
+	makeSticky({
+		el, inner, bg, fixedMod,
+	});
+
+	makeChildrenAdaptive({
+		el, inner, tags, nav, burger, gap,
+	});
 }
