@@ -32,11 +32,12 @@ function makeSticky(data) {
 	}
 
 	// Resize header background
+	let duration = 0;
 	function resizeBackground() {
 		if (isFixed()) {
-			gsap.to(data.bg.get(0), { scaleX: maxScaleX, duration: 0.3 });
+			gsap.to(data.bg.get(0), { scaleX: maxScaleX, duration });
 		} else {
-			gsap.to(data.bg.get(0), { scaleX: 1, duration: 0.3 });
+			gsap.to(data.bg.get(0), { scaleX: 1, duration });
 		}
 	}
 
@@ -44,7 +45,10 @@ function makeSticky(data) {
 	setTimeout(updateInnerOffsetTop);
 	setTimeout(updateFixation);
 	setTimeout(updateMaxScaleX);
-	setTimeout(resizeBackground);
+	setTimeout(() => {
+		resizeBackground();
+		duration = 0.3;
+	});
 
 	// Add event listeners
 	$(window).on('resize', () => setTimeout(updateInnerOffsetTop));
