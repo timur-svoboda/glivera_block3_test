@@ -17,10 +17,6 @@
 
 	@include z-index(mobile_menu);
 
-	@include bp($point_2, min) {
-		display: none;
-	}
-
 	&.mobile_menu--open {
 		box-shadow: -3px 0 3px rgba($black, .3);
 
