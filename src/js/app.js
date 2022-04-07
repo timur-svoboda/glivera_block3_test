@@ -37,6 +37,9 @@ const readyFunc = () => {
 	const header = new Header({
 		header: '.header',
 		inner: '.header .header_in',
+		tags: '.header_tags',
+		nav: '.header_nav',
+		burger: '.header_burger',
 		bg: '.header_bg',
 		fixedMod: 'header--fixed',
 	});

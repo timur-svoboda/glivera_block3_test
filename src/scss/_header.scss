@@ -43,6 +43,7 @@
 	@extend %container;
 
 	display: flex;
+	flex-wrap: wrap;
 	justify-content: space-between;
 	align-items: center;
 
@@ -53,10 +54,6 @@
 .header_tags {
 	display: flex;
 	align-items: center;
-
-	@include bp($point_2 - 1) {
-		display: none;
-	}
 }
 
 .header_tags_title {
@@ -68,15 +65,7 @@
 }
 
 .header_burger {
-	@include bp($point_2, min) {
-		display: none;
-	}
-}
-
-.header_nav {
-	@include bp($point_5 - 1) {
-		display: none;
-	}
+	display: none;
 }
 
 //------------------------------------------------------------layout###
