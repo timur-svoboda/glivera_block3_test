@@ -74,9 +74,3 @@
 	font-weight: 500;
 	text-transform: uppercase;
 }
-
-.mobile_menu_nav {
-	@include bp($point_5, min) {
-		display: none;
-	}
-}
