@@ -1,6 +1,5 @@
 .recent_posts {
-	display: flex;
-	flex-wrap: wrap;
+	@extend %global_flex_block_row_wrap_flex-start;
 
 	@include bp($point_5) {
 		.recent_posts_title {

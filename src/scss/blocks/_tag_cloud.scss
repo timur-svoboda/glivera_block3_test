@@ -8,9 +8,7 @@
 }
 
 .tag_cloud_list {
-	display: flex;
-	flex-wrap: wrap;
-	align-items: baseline;
+	@extend %global_flex_block_row_wrap_flex-start_baseline;
 }
 
 .tag_cloud_item {

@@ -1,7 +1,7 @@
 @use "sass:math";
 
 .tags {
-	display: flex;
+	@extend %global_flex_block_row_nowrap_flex-start;
 
 	&.tags--vertical {
 		flex-wrap: wrap;

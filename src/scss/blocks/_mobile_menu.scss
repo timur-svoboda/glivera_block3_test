@@ -40,8 +40,7 @@
 }
 
 .mobile_menu_in {
-	display: flex;
-	flex-direction: column;
+	@extend %global_flex_block_column_nowrap_flex-start;
 
 	padding: 1rem 1.4rem;
 	height: 100%;

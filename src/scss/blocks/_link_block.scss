@@ -5,7 +5,7 @@
 }
 
 .link_block_header {
-	display: flex;
+	@extend %global_flex_block_row_wrap_flex-start;
 
 	margin-bottom: 1.8rem;
 }

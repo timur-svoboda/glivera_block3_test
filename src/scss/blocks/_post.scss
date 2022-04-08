@@ -1,7 +1,7 @@
 @use "sass:math";
 
 .post_in {
-	display: flex;
+	@extend %global_flex_block_row_nowrap_flex-start;
 
 	@include bp($point_5 - 1) {
 		flex-wrap: wrap;
@@ -73,8 +73,7 @@
 }
 
 .post_comments {
-	display: flex;
-	align-items: flex-end;
+	@extend %global_flex_block_row_nowrap_flex-start_flex-end;
 }
 
 .post_comments_count {
