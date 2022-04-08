@@ -1,7 +1,5 @@
 .icon_button {
-	display: flex;
-	justify-content: center;
-	align-items: center;
+	@extend %global_flex_block_row_nowrap_center_center;
 
 	min-width: 3rem;
 	min-height: 3rem;
