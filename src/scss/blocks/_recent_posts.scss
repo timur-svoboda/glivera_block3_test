@@ -2,7 +2,7 @@
 	display: flex;
 	flex-direction: column;
 
-	&.recent_posts--below_point_1 {
+	@include bp($point_5) {
 		.recent_posts_title {
 			margin-bottom: 1.2rem;
 		}
