@@ -1,6 +1,5 @@
 .search {
-	display: flex;
-	align-items: stretch;
+	@extend %global_flex_block_row_nowrap_flex-start_stretch;
 
 	min-width: 21.2rem;
 	height: 3.6rem;
