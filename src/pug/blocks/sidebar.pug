@@ -1,8 +1,5 @@
 -
 	const sidebar_data = {
-		search: {
-			placeholder: 'Search blog',
-		},
 		announcements: {
 			icon: 'ring',
 			title: 'Announcements',
@@ -39,7 +36,7 @@
 		.search
 			.search_button
 				+icon_button("search")
-			input.search_input(type="search", placeholder=sidebar_data.search.placeholder)
+			input.search_input(type="search", placeholder="Search blog")
 	.sidebar_link_block
 		+link_block(sidebar_data.announcements)
 	.sidebar_link_block
