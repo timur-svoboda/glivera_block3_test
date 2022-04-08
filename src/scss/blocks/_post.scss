@@ -1,65 +1,27 @@
 @use "sass:math";
 
-.post {
-	--width: 100%;
-
-	&.post--below_point_1 {
-		.post_img {
-			margin-right: calc(0.24 * var(--width) - 9.1rem);
-		}
-	}
-
-	&.post--below_point_2 {
-		.post_in {
-			flex-direction: column;
-		}
-
-		.post_img {
-			position: relative;
-
-			margin: 0 0 1.6rem;
-			padding-top: 64.2%;
-
-			.cover_img {
-				position: absolute;
-				top: 0;
-				left: 0;
-
-				width: 100%;
-				height: 100%;
-
-				object-fit: cover;
-			}
-		}
-
-		.post_comments_count {
-			font-size: 1rem;
-			line-height: 1.2rem;
-		}
-
-		.post_comments_icon svg {
-			width: 1.2rem;
-			height: 1.2rem;
-		}
-	}
-
-	&.post--below_point_3 {
-		.post_title {
-			font-size: 1.2rem;
-		}
-	}
-}
-
 .post_in {
 	display: flex;
+
+	@include bp($point_5 - 1) {
+		flex-direction: column;
+	}
 }
 
 .post_img {
 	margin-right: 2.6rem;
 
+	@include bp($point_5 - 1) {
+		margin: 0 0 1.4rem;
+	}
+
 	.cover_img {
 		display: block;
 		width: 17.6rem;
+
+		@include bp($point_5 - 1) {
+			width: 100%;
+		}
 	}
 }
 

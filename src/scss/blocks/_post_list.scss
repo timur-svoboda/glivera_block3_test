@@ -7,28 +7,6 @@
 	align-content: stretch;
 
 	margin: 0 -1.8rem -1.8rem 0;
-
-	&.post_list--above_point_1 {
-		.post_list_item {
-			width: 100%;
-		}
-	}
-
-	&.post_list--below_point_1 {
-		.post_list_item {
-			width: 50%;
-
-			&:nth-child(2) {
-				padding-top: 0;
-			}
-		}
-	}
-
-	&.post_list--below_point_2 {
-		.post_list_item {
-			width: 100%;
-		}
-	}
 }
 
 .post_list_item {
