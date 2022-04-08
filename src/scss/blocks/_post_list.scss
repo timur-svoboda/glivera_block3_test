@@ -1,10 +1,7 @@
 @use "sass:math";
 
 .post_list {
-	display: flex;
-	flex-wrap: wrap;
-	align-items: stretch;
-	align-content: stretch;
+	@extend %global_flex_block_row_wrap_flex-start;
 
 	margin: 0 -1.8rem -1.8rem 0;
 }
