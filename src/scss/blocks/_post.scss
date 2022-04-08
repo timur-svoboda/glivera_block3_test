@@ -73,8 +73,7 @@
 }
 
 .post_comments {
-	display: flex;
-	align-items: flex-end;
+	@extend %global_flex_block_row_nowrap_flex-start_flex-end;
 }
 
 .post_comments_count {
