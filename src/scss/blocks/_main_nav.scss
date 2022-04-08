@@ -1,8 +1,7 @@
 @use "sass:math";
 
 .main_nav_list {
-	display: flex;
-	flex-wrap: wrap;
+	@extend %global_flex_block_row_wrap_flex-start;
 }
 
 .main_nav_item {
