@@ -1,6 +1,6 @@
 .recent_posts {
 	display: flex;
-	flex-direction: column;
+	flex-wrap: wrap;
 
 	@include bp($point_5) {
 		.recent_posts_title {
@@ -11,6 +11,7 @@
 
 .recent_posts_title {
 	margin-bottom: 2.4rem;
+	width: 100%;
 
 	font-size: 2rem;
 	font-weight: 300;
