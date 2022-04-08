@@ -4,9 +4,11 @@
 	display: flex;
 
 	&.tags--vertical {
-		flex-direction: column;
+		flex-wrap: wrap;
 
 		.tags_item {
+			width: 100%;
+
 			&:not(:last-child) {
 				padding-right: 0;
 				margin-bottom: 1rem;
