@@ -1,8 +1,5 @@
 -
 	const sidebar_data = {
-		search: {
-			placeholder: 'Search blog',
-		},
 		announcements: {
 			icon: 'ring',
 			title: 'Announcements',
@@ -25,9 +22,6 @@
 				{ text: 'Wiretapping Today Just Doesn’t Mean What The Word Meant In The 1990s, So Don’t Fall For That Lie' },
 			],
 		},
-		poster: {
-			img: 'poster',
-		},
 		tag_cloud: {
 			title: 'Tag cloud',
 			list: ['mass', 'surveillance', 'internet', 'privacy', 'china', 'whatsapp', 'police', 'dna', 'nsa', 'russia', 'gchq', 'internet', 'censorship', 'facial', 'recognition', 'isp', 'Apple', 'united kingdom', 'amazon', 'metadata', 'turkey', 'vpn', 'tracking', 'broadband', 'privacy', 'canada', 'encryption', 'Twitter', 'uk', 'surverillance', 'EU', 'Facebook', 'india', 'freedom', 'of', 'expression', 'ajit', 'pai', 'bitcoin', 'internet', 'history', 'gdpr', 'microsoft', 'fcc', 'censorship', 'germany', 'file', 'sharing', 'privacy', 'copyright', 'anonymity', 'internet', 'of', 'things', 'google', 'australia', 'net', 'neutrality'],
@@ -39,7 +33,7 @@
 		.search
 			.search_button
 				+icon_button("search")
-			input.search_input(type="search", placeholder=sidebar_data.search.placeholder)
+			input.search_input(type="search", placeholder="Search blog")
 	.sidebar_link_block
 		+link_block(sidebar_data.announcements)
 	.sidebar_link_block
@@ -47,7 +41,7 @@
 	.sidebar_poster
 		.poster
 			a.poster_link(href="#")
-				+picture({ img: sidebar_data.poster.img, img_class: 'poster_img' })
+				+picture({ img: 'poster', img_class: 'poster_img' })
 	.sidebar_tag_cloud
 		.tag_cloud
 			h4.tag_cloud_title= sidebar_data.tag_cloud.title
