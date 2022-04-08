@@ -8,34 +8,28 @@
 		title: 'Recent posts',
 		post_list: doubleArray([
 			{
-				img: 'post_1',
 				title: 'The Internet Cannot be Trusted – Beamsplitters, Backdoors, and Broken Promises',
 				author: {
 					name: 'Derek Zimmer',
 					date: 'JUL 25, 2018',
 				},
 				tags: ['Governments', 'Networking', 'Open Source', 'Privacy', 'Security'],
-				comments_count: 0,
 			},
 			{
-				img: 'post_2',
 				title: 'How to get cheaper flights using a VPN',
 				author: {
 					name: 'Jayson',
 					date: 'JUL 24, 2018',
 				},
 				tags: ['Guides'],
-				comments_count: 0,
 			},
 			{
-				img: 'post_3',
 				title: 'Net Neutrality was repealed, but the fight is far from over',
 				author: {
 					name: 'Chris Miller',
 					date: 'JUL 22, 2018',
 				},
 				tags: ['Governments', 'Net Neutrality', 'News'],
-				comments_count: 0,
 			},
 		]),
 		button: {
@@ -47,8 +41,12 @@
 	h2.recent_posts_title= recent_posts_data.title
 	.recent_posts_list
 		ul.post_list
-			each post in recent_posts_data.post_list
+			each post, i in recent_posts_data.post_list
 				li.post_list_item
-					+post(post)
+					+post({
+						...post,
+						img: `post_${(i % 3) + 1}`,
+						comments_count: 0,
+					})
 	.recent_posts_button
 		button.btn_base(type="button")= recent_posts_data.button.text
