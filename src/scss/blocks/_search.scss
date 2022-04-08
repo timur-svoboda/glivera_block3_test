@@ -9,7 +9,7 @@
 }
 
 .search_button {
-	display: flex;
+	@extend %global_flex_block_row_nowrap_flex-start_stretch;
 
 	width: 3.6rem;
 }
