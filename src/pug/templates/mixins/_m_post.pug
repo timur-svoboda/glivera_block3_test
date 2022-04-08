@@ -1,9 +1,9 @@
 mixin post(data)
 	.post
 		.post_in
-			.post_img
+			.post_img_wrap
 				a.post_img_link(href="#")
-					+picture({ img: data.img })
+					+picture({ img: data.img, img_class: 'post_img' })
 			.post_content
 				a.post_title(href="#")= data.title
 				.post_author

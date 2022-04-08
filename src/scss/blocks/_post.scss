@@ -8,14 +8,14 @@
 	}
 }
 
-.post_img {
+.post_img_wrap {
 	margin-right: 2.6rem;
 
 	@include bp($point_5 - 1) {
 		margin: 0 0 1.4rem;
 	}
 
-	.cover_img {
+	.post_img {
 		display: block;
 		width: 17.6rem;
 
