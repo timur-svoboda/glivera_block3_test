@@ -7,15 +7,9 @@ function makeSticky(data) {
 		return data.el.hasClass(data.fixedMod);
 	}
 
-	// Update the distance from inner top to header top
-	let innerOffsetTop;
-	function updateInnerOffsetTop() {
-		innerOffsetTop = (data.el.height() - data.inner.height()) / 2;
-	}
-
 	// Update fixation state
 	function updateFixation() {
-		const isInnerTouchViewport = $(document).scrollTop() >= innerOffsetTop;
+		const isInnerTouchViewport = $(document).scrollTop() >= data.offsetTop;
 
 		if (!isFixed() && isInnerTouchViewport) {
 			data.el.addClass(data.fixedMod);
@@ -42,7 +36,6 @@ function makeSticky(data) {
 	}
 
 	// Initialize state
-	setTimeout(updateInnerOffsetTop);
 	setTimeout(updateFixation);
 	setTimeout(updateMaxScaleX);
 	setTimeout(() => {
@@ -51,7 +44,6 @@ function makeSticky(data) {
 	});
 
 	// Add event listeners
-	$(window).on('resize', () => setTimeout(updateInnerOffsetTop));
 	$(window).on('resize', () => setTimeout(updateFixation));
 	$(window).on('resize', () => setTimeout(updateMaxScaleX));
 	$(window).on('resize', () => setTimeout(resizeBackground));
@@ -141,9 +133,10 @@ export default function Header(data) {
 	const bg = $(data.bg).first();
 	const fixedMod = data.fixedMod || 'header--fixed';
 	const gap = data.gap || 16;
+	const offsetTop = data.offsetTop || 0;
 
 	makeSticky({
-		el, inner, bg, fixedMod,
+		el, inner, bg, fixedMod, offsetTop,
 	});
 
 	makeChildrenAdaptive({

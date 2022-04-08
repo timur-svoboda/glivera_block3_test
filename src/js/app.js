@@ -42,6 +42,7 @@ const readyFunc = () => {
 		burger: '.header_burger',
 		bg: '.header_bg',
 		fixedMod: 'header--fixed',
+		offsetTop: 42,
 	});
 
 	const mobileMenu = new MobileMenu({
