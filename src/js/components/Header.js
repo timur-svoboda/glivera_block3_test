@@ -1,145 +1,143 @@
 import gsap from 'gsap';
 import throttle from 'lodash.throttle';
 
-function makeSticky(data) {
-	// Check if header is fixed
-	function isFixed() {
-		return data.el.hasClass(data.fixedMod);
+export default class Header {
+	constructor(data) {
+		// header
+		this.header = document.querySelector(data.header);
+		this.background = document.querySelector(data.background);
+		this.headerY = data.headerY;
+		this.fixedClass = data.fixedClass || 'header--fixed';
+		this.backgroundDuration = data.duration || 0.3;
+
+		this.updateFixed = this.updateFixed.bind(this);
+
+		const throttledUpdateFixed = throttle(this.updateFixed, 100);
+
+		document.addEventListener('scroll', () => throttledUpdateFixed());
+		window.addEventListener('resize', () => this.resizeBackground());
+
+		// burger
+		this.burger = document.querySelector(data.burger);
+		this.burgerTop = document.querySelector(data.burgerTop);
+		this.burgerCenter = document.querySelector(data.burgerCenter);
+		this.burgerBottom = document.querySelector(data.burgerBottom);
+		this.burgerLineHeight = data.burgerLineHeight;
+		this.distanceBetweenBurgerLines = data.distanceBetweenBurgerLines;
+		this.burgerStepDuration = data.burgerStepDuration || 0.2;
+
+		this.tlBurgerTop = gsap.timeline();
+		this.tlBurgerTop.to(this.burgerTop, {
+			duration: this.burgerStepDuration,
+			y: this.burgerLineHeight + this.distanceBetweenBurgerLines,
+			ease: 'power0',
+		});
+		this.tlBurgerTop.to(this.burgerTop, {
+			duration: this.burgerStepDuration,
+			rotation: 45,
+		});
+
+		this.tlBurgerCenter = gsap.timeline();
+		this.tlBurgerCenter.to(this.burgerCenter, {
+			duration: this.burgerStepDuration,
+			opacity: 0,
+			ease: 'power0',
+		});
+
+		this.tlBurgerBottom = gsap.timeline();
+		this.tlBurgerBottom.to(this.burgerBottom, {
+			duration: this.burgerStepDuration,
+			y: -(this.burgerLineHeight + this.distanceBetweenBurgerLines),
+			ease: 'power0',
+		});
+		this.tlBurgerBottom.to(this.burgerBottom, {
+			duration: this.burgerStepDuration,
+			rotation: -45,
+		});
+
+		this.tlBurger = gsap.timeline({ paused: true });
+		this.tlBurger
+			.add(this.tlBurgerTop)
+			.add(this.tlBurgerCenter, '<')
+			.add(this.tlBurgerBottom, '<');
+
+		this.burgerClickHandler = this.burgerClickHandler.bind(this);
+
+		this.burger.addEventListener('click', this.burgerClickHandler);
+
+		// mobile menu
+		this.menu = document.querySelector(data.menu);
+		this.menuCross = document.querySelector(data.menuCross);
+		this.menuOpenClass = data.menuOpenClass || 'mobile_menu--open';
+
+		this.menuClickHandler = this.menuClickHandler.bind(this);
+		this.menuCrossClickHandler = this.menuCrossClickHandler.bind(this);
+
+		this.menu.addEventListener('click', this.menuClickHandler);
+		this.menuCross.addEventListener('click', this.menuCrossClickHandler);
 	}
 
-	// Update fixation state
-	function updateFixation() {
-		const isInnerTouchViewport = $(document).scrollTop() >= data.offsetTop;
+	updateFixed() {
+		const isOutOfSight = window.scrollY >= this.headerY;
+		const isFixed = this.header.classList.contains(this.fixedClass);
 
-		if (!isFixed() && isInnerTouchViewport) {
-			data.el.addClass(data.fixedMod);
-		} else if (isFixed() && !isInnerTouchViewport) {
-			data.el.removeClass(data.fixedMod);
+		if (isOutOfSight && !isFixed) {
+			this.header.classList.add(this.fixedClass);
+
+			this.resizeBackground();
+		} else if (!isOutOfSight && isFixed) {
+			this.header.classList.remove(this.fixedClass);
+
+			this.resizeBackground();
 		}
 	}
 
-	// Update scale value of background when header is fixed
-	let maxScaleX;
-	const borderRadius = parseFloat(data.bg.css('border-radius'));
-	function updateMaxScaleX() {
-		maxScaleX = ($(document).width() + borderRadius) / data.bg.width();
-	}
+	resizeBackground() {
+		const isFixed = this.header.classList.contains(this.fixedClass);
 
-	// Resize header background
-	let duration = 0;
-	function resizeBackground() {
-		if (isFixed()) {
-			gsap.to(data.bg.get(0), { scaleX: maxScaleX, duration });
+		if (isFixed) {
+			const backgroundStyles = window.getComputedStyle(this.background);
+			const borderRadius = parseFloat(backgroundStyles.borderRadius);
+
+			const scaleX = (document.body.clientWidth + borderRadius) / this.background.clientWidth;
+
+			gsap.to(this.background, { scaleX, duration: this.backgroundDuration });
 		} else {
-			gsap.to(data.bg.get(0), { scaleX: 1, duration });
+			gsap.to(this.background, { scaleX: 1, duration: this.backgroundDuration });
 		}
 	}
 
-	// Initialize state
-	setTimeout(updateFixation);
-	setTimeout(updateMaxScaleX);
-	setTimeout(() => {
-		resizeBackground();
-		duration = 0.3;
-	});
+	burgerClickHandler() {
+		if (this.burger.classList.contains('burgerCrossed')) {
+			this.burger.classList.remove('burgerCrossed');
 
-	// Add event listeners
-	$(window).on('resize', () => setTimeout(updateFixation));
-	$(window).on('resize', () => setTimeout(updateMaxScaleX));
-	$(window).on('resize', () => setTimeout(resizeBackground));
-	$(document).on('scroll', throttle(updateFixation, 100));
-	$(document).on('scroll', throttle(resizeBackground, 100));
-}
+			this.tlBurger.reverse();
 
-function makeChildrenAdaptive(data) {
-	// Get children widths
-	let tagsWidth;
-	let navWidth;
-	let burgerWidth;
-	function getChildrenWidths() {
-		data.tags.show();
-		data.nav.show();
-		data.burger.show();
-
-		tagsWidth = data.tags.width();
-		navWidth = data.nav.width();
-		burgerWidth = data.burger.width();
-
-		data.tags.hide();
-		data.nav.hide();
-		data.burger.hide();
-	}
-
-	// Get state of children
-	let state;
-	function getChildrenState() {
-		const availableSpace = data.inner.width() - data.gap;
-
-		if (tagsWidth + navWidth <= availableSpace) {
-			state = {
-				tags: true,
-				nav: true,
-				burger: false,
-			};
-		} else if (burgerWidth + navWidth <= availableSpace) {
-			state = {
-				tags: false,
-				nav: true,
-				burger: true,
-			};
+			this.menu.classList.remove(this.menuOpenClass);
 		} else {
-			state = {
-				tags: false,
-				nav: false,
-				burger: true,
-			};
+			this.burger.classList.add('burgerCrossed');
+
+			this.tlBurger.play();
+
+			this.menu.classList.add(this.menuOpenClass);
 		}
 	}
 
-	// Update header children visibility based on state
-	function updateChildrenVisibility() {
-		Object.entries(state).forEach(([child, isShown]) => data[child].toggle(isShown));
+	menuClickHandler(event) {
+		if (event.target === event.currentTarget) {
+			this.menu.classList.remove(this.menuOpenClass);
+
+			this.burger.classList.remove('burgerCrossed');
+
+			this.tlBurger.reverse();
+		}
 	}
 
-	// Initialize
-	setTimeout(getChildrenWidths);
-	setTimeout(getChildrenState);
-	setTimeout(updateChildrenVisibility);
+	menuCrossClickHandler() {
+		this.menu.classList.remove(this.menuOpenClass);
 
-	// Update children visibility on their resize
-	const childrenResizeObserver = new ResizeObserver(() => { // eslint-disable-line
-		setTimeout(getChildrenWidths);
-		setTimeout(getChildrenState);
-		setTimeout(updateChildrenVisibility);
-	});
-	childrenResizeObserver.observe(data.tags.get(0));
-	childrenResizeObserver.observe(data.nav.get(0));
-	childrenResizeObserver.observe(data.burger.get(0));
+		this.burger.classList.remove('burgerCrossed');
 
-	// Update children visibility on inner resize
-	const innerResizeObserver = new ResizeObserver(() => { // eslint-disable-line
-		setTimeout(getChildrenState);
-		setTimeout(updateChildrenVisibility);
-	});
-	innerResizeObserver.observe(data.inner.get(0));
-}
-
-export default function Header(data) {
-	const el = $(data.header).first();
-	const inner = $(data.inner).first();
-	const tags = $(data.tags).first();
-	const nav = $(data.nav).first();
-	const burger = $(data.burger).first();
-	const bg = $(data.bg).first();
-	const fixedMod = data.fixedMod || 'header--fixed';
-	const gap = data.gap || 16;
-	const offsetTop = data.offsetTop || 0;
-
-	makeSticky({
-		el, inner, bg, fixedMod, offsetTop,
-	});
-
-	makeChildrenAdaptive({
-		el, inner, tags, nav, burger, gap,
-	});
+		this.tlBurger.reverse();
+	}
 }

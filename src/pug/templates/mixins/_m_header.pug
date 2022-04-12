@@ -48,9 +48,9 @@ mixin header(data)
 				+tags(tags)
 			.header_burger
 				button.burger(type="button" aria-label="burger")
-					.burger_line.burger_line--top
-					.burger_line.burger_line--center
-					.burger_line.burger_line--bottom
+					.burger_line.burger_line--top.burgerLineTop
+					.burger_line.burger_line--center.burgerLineCenter
+					.burger_line.burger_line--bottom.burgerLineBottom
 			.header_nav
 				+main_nav(nav)
-		.header_bg
+			.header_bg.headerBackground

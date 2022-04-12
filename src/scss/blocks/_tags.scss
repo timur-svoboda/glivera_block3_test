@@ -1,11 +1,9 @@
 @use "sass:math";
 
 .tags {
-	@extend %global_flex_block_row_nowrap_flex-start;
+	@extend %global_flex_block_row_wrap_flex-start;
 
 	&.tags--vertical {
-		flex-wrap: wrap;
-
 		.tags_item {
 			width: 100%;
 

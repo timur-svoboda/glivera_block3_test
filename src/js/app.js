@@ -2,8 +2,6 @@
 import $ from 'jquery';
 import { GLOBAL_VARS } from 'utils/constants';
 import { documentReady, pageLoad } from 'utils';
-import MobileMenu from 'components/MobileMenu';
-import Burger from 'components/Burger';
 import Header from 'components/Header';
 import pageWidgetInit from './dev_vendors/dev_widget';
 // ------------------- imports###
@@ -32,34 +30,21 @@ const readyFunc = () => {
 	console.log('ready');
 
 	const header = new Header({
+		// header
 		header: '.header',
-		inner: '.header .header_in',
-		tags: '.header_tags',
-		nav: '.header_nav',
-		burger: '.header_burger',
-		bg: '.header_bg',
-		fixedMod: 'header--fixed',
-		offsetTop: 42,
-	});
-
-	const mobileMenu = new MobileMenu({
-		menu: '.mobile_menu',
-		cross: '.mobile_menu .icon_button--cross',
-		openMod: 'mobile_menu--open',
-	});
-
-	const burger = new Burger({
+		background: '.headerBackground',
+		headerY: 42,
+		// burger
 		burger: '.burger',
-		top: '.burger .burger_line--top',
-		center: '.burger .burger_line--center',
-		bottom: '.burger .burger_line--bottom',
-		height: 3.2,
-		offset: 6.4,
+		burgerTop: '.burgerLineTop',
+		burgerCenter: '.burgerLineCenter',
+		burgerBottom: '.burgerLineBottom',
+		burgerLineHeight: 3.2,
+		distanceBetweenBurgerLines: 6.4,
+		// menu mobile
+		menu: '.mobileMenu',
+		menuCross: '.mobileMenuCross',
 	});
-
-	burger.el.on('click', () => mobileMenu.open());
-
-	mobileMenu.el.on('closed', () => burger.uncross());
 };
 
 const loadFunc = () => {
