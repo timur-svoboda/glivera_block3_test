@@ -45,9 +45,9 @@
         </div>
         <div class="header_burger">
           <button class="burger" type="button" aria-label="burger">
-            <div class="burger_line burger_line--top"></div>
-            <div class="burger_line burger_line--center"></div>
-            <div class="burger_line burger_line--bottom"></div>
+            <div class="burger_line burger_line--top burgerLineTop"></div>
+            <div class="burger_line burger_line--center burgerLineCenter"></div>
+            <div class="burger_line burger_line--bottom burgerLineBottom"></div>
           </button>
         </div>
         <div class="header_nav">
@@ -58,8 +58,8 @@
             </ul>
           </nav>
         </div>
+        <div class="header_bg headerBackground"></div>
       </div>
-      <div class="header_bg"></div>
     </header>
     <div class="wrapper">
       <div class="base">
@@ -73,7 +73,7 @@
                     <div class="post">
                       <div class="post_in">
                         <div class="post_img_wrap"><a class="post_img_link" href="#">
-                            <picture>
+                            <picture class="post_picture">
                               <source srcset="images/post_1.jpg.webp" type="image/webp">
                               <source srcset="images/post_1.jpg" type="image/jpg"><img class="post_img" src="images/post_1.jpg" alt="">
                             </picture></a></div>
@@ -107,7 +107,7 @@
                     <div class="post">
                       <div class="post_in">
                         <div class="post_img_wrap"><a class="post_img_link" href="#">
-                            <picture>
+                            <picture class="post_picture">
                               <source srcset="images/post_2.jpg.webp" type="image/webp">
                               <source srcset="images/post_2.jpg" type="image/jpg"><img class="post_img" src="images/post_2.jpg" alt="">
                             </picture></a></div>
@@ -133,7 +133,7 @@
                     <div class="post">
                       <div class="post_in">
                         <div class="post_img_wrap"><a class="post_img_link" href="#">
-                            <picture>
+                            <picture class="post_picture">
                               <source srcset="images/post_3.jpg.webp" type="image/webp">
                               <source srcset="images/post_3.jpg" type="image/jpg"><img class="post_img" src="images/post_3.jpg" alt="">
                             </picture></a></div>
@@ -163,7 +163,7 @@
                     <div class="post">
                       <div class="post_in">
                         <div class="post_img_wrap"><a class="post_img_link" href="#">
-                            <picture>
+                            <picture class="post_picture">
                               <source srcset="images/post_1.jpg.webp" type="image/webp">
                               <source srcset="images/post_1.jpg" type="image/jpg"><img class="post_img" src="images/post_1.jpg" alt="">
                             </picture></a></div>
@@ -197,7 +197,7 @@
                     <div class="post">
                       <div class="post_in">
                         <div class="post_img_wrap"><a class="post_img_link" href="#">
-                            <picture>
+                            <picture class="post_picture">
                               <source srcset="images/post_2.jpg.webp" type="image/webp">
                               <source srcset="images/post_2.jpg" type="image/jpg"><img class="post_img" src="images/post_2.jpg" alt="">
                             </picture></a></div>
@@ -223,7 +223,7 @@
                     <div class="post">
                       <div class="post_in">
                         <div class="post_img_wrap"><a class="post_img_link" href="#">
-                            <picture>
+                            <picture class="post_picture">
                               <source srcset="images/post_3.jpg.webp" type="image/webp">
                               <source srcset="images/post_3.jpg" type="image/jpg"><img class="post_img" src="images/post_3.jpg" alt="">
                             </picture></a></div>
@@ -310,7 +310,7 @@
               </div>
               <div class="sidebar_poster">
                 <div class="poster"><a class="poster_link" href="#">
-                    <picture>
+                    <picture class="poster_picture">
                       <source srcset="images/poster.jpg.webp" type="image/webp">
                       <source srcset="images/poster.jpg" type="image/jpg"><img class="poster_img" src="images/poster.jpg" alt="">
                     </picture></a></div>
@@ -386,9 +386,9 @@
       </div>
       <footer class="footer"></footer>
     </div>
-    <div class="mobile_menu">
+    <div class="mobile_menu mobileMenu">
       <div class="mobile_menu_in">
-        <div class="mobile_menu_cross">
+        <div class="mobile_menu_cross mobileMenuCross">
           <button class="icon_button icon_button--cross" type="button" aria-label="cross">
             <svg class="icon icon_cross icon--size_default_mod">
               <use xlink:href="images/sprite/sprite.svg#cross"></use>
