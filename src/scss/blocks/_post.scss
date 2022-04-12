@@ -9,21 +9,26 @@
 }
 
 .post_img_wrap {
+	flex-shrink: 0;
+
+	display: block;
 	margin-right: 2.6rem;
+	width: 17.6rem;
 
 	@include bp($point_5 - 1) {
 		margin: 0 0 1.4rem;
 		width: 100%;
 	}
+}
 
-	.post_img {
-		display: block;
-		width: 17.6rem;
+.post_picture {
+	display: block;
+	width: 100%;
+	height: 100%;
+}
 
-		@include bp($point_5 - 1) {
-			width: 100%;
-		}
-	}
+.post_img {
+	@extend %cover_img;
 }
 
 .post_title {
